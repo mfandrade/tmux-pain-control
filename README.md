@@ -31,11 +31,6 @@ Enables vim popular keybindings (without the need of `prefix`)
 
 <br/>
 
-**Note**: This overrides tmux's default binding for toggling between last
-active windows, `prefix + l`.
-[tmux-sensible](https://github.com/tmux-plugins/tmux-sensible) gives you
-a better binding for that, `prefix + a` (if your prefix is `C-a`).
-
 <br/><br/>
 
 <img align="right" src="/screenshots/pane_resizing.gif" alt="pane resizing"/>
@@ -84,21 +79,11 @@ Newly created pane always has the same path as the original pane.
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @plugin 'tmux-plugins/tmux-pain-control'
+    set -g @plugin 'mfandrade/tmux-pain-control'
 
 Hit `prefix + I` to fetch the plugin and source it.
 
 You should now have all `pain-control` bindings defined.
-
-### Manual Installation
-
-Clone the repo:
-
-    $ git clone https://github.com/tmux-plugins/tmux-pain-control ~/clone/path
-
-Add this line to the bottom of `.tmux.conf`:
-
-    run-shell ~/clone/path/pain_control.tmux
 
 Reload TMUX environment:
 
