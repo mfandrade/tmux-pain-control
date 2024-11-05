@@ -18,13 +18,15 @@ Notice most of the bindings emulate vim cursor movements.
 
 **Navigation**
 
-- `prefix + h` and `prefix + C-h`<br/>
+Enables vim popular keybindings (without the need of `prefix`)
+
+- `C-h` <br/>
   select pane on the left
-- `prefix + j` and `prefix + C-j`<br/>
+- `C-j` <br/>
   select pane below the current one
-- `prefix + k` and `prefix + C-k`<br/>
+- `C-k`<br/>
   select pane above
-- `prefix + l` and `prefix + C-l`<br/>
+- `C-l`<br/>
   select pane on the right
 
 <br/>
