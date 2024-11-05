@@ -16,14 +16,17 @@ get_tmux_option() {
 }
 
 pane_navigation_bindings() {
-  tmux bind-key h select-pane -L
-  tmux bind-key C-h select-pane -L
-  tmux bind-key j select-pane -D
-  tmux bind-key C-j select-pane -D
-  tmux bind-key k select-pane -U
-  tmux bind-key C-k select-pane -U
-  tmux bind-key l select-pane -R
-  tmux bind-key C-l select-pane -R
+  # https://github.com/christoomey/vim-tmux-navigator/?tab=readme-ov-file#disable-wrapping
+  is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+  tmux bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}' {} { select-pane -L } }
+  tmux bind-key -n 'C-j' if-shell "$is_vim" { send-keys C-j } { if-shell -F '#{pane_at_bottom}' {} { select-pane -D } }
+  tmux bind-key -n 'C-k' if-shell "$is_vim" { send-keys C-k } { if-shell -F '#{pane_at_top}' {} { select-pane -U } }
+  tmux bind-key -n 'C-l' if-shell "$is_vim" { send-keys C-l } { if-shell -F '#{pane_at_right}' {} { select-pane -R } }
+  tmux bind-key -T copy-mode-vi 'C-h' if-shell -F '#{pane_at_left}' {} { select-pane -L }
+  tmux bind-key -T copy-mode-vi 'C-j' if-shell -F '#{pane_at_bottom}' {} { select-pane -D }
+  tmux bind-key -T copy-mode-vi 'C-k' if-shell -F '#{pane_at_top}' {} { select-pane -U }
+  tmux bind-key -T copy-mode-vi 'C-l' if-shell -F '#{pane_at_right}' {} { select-pane -R }
 }
 
 window_move_bindings() {
